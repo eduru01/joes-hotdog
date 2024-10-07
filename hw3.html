@@ -1,0 +1,87 @@
+
+<html> 
+    <head>
+
+
+    </head>
+
+    <body>
+        <h1> Joe's Hotdog Stand</h1>
+
+        <script>
+            /* this makes a popup windo if error or 
+            something isnt happeneing  */
+          
+            numDogs = prompt("How many hotdogs do you want?", "");
+            numFries = prompt("How many fries do you want?", "")
+            numSoda = prompt("How many sodas do you want?", "")
+            function showMoney(m) 
+            {
+                fullMoney = Math.round(m * 100)/100  
+                moneyString = fullMoney.toString();
+
+                twoSides = moneyString.split('.');
+
+                if (twoSides.length == 1) {
+                    return twoSides[0] + '.00';
+                } else if (twoSides[1].length == 1)
+                {
+                    return moneyString +'0';
+                } else {
+                      return fullMoney;
+                }
+              
+            }
+
+
+            document.write("Quantity of hotdogs: " + numDogs)
+            document.write("<br/> Price of " + numDogs + " hotdogs: $" + showMoney(numDogs * 4.80)) 
+
+            document.write("<hr/> Quantity of fries: " + numFries)
+            document.write("<br/> Price of " + numFries + " fries: $" +  showMoney(numFries * 3.95))
+
+            document.write("<hr/> Quantity of sodas: " + numSoda)
+            document.write("<br/> Price of " + numSoda + " sodas: $" +  showMoney(numSoda * 1.99))
+            
+
+ 
+
+            var subtotal = showMoney(((numDogs * 4.80) + (numFries * 3.95) + (numSoda * 1.99)));
+            document.write("<hr> Subtotal before discount : $" + subtotal);
+
+
+            var discountSubtotal;
+            var tax;
+            var discount;
+            var newSubtotal;
+
+            if (subtotal >= 25) {
+                discount = showMoney(subtotal * .1);
+                document.write("<br/> You get a discount of : $" + discount + " off! ");
+
+                discountSubtotal = showMoney(subtotal - discount)
+                document.write("<br/> Subtotal after discount : $" + (discountSubtotal));
+                newSubtotal = discountSubtotal;
+            }
+            
+            if (subtotal < 25){
+                document.write("<br/> Subtotal with no discount : $" + showMoney(subtotal));
+                newSubtotal = showMoney(subtotal);
+                
+            }
+            
+            tax = (subtotal * .0625 );
+            document.write("<hr/> MA tax of : $" + showMoney(subtotal * .0625 ));  
+            var finalTotal =  showMoney(newSubtotal + tax)
+            document.write("<br/> Your final total is : $" + (finalTotal)); 
+ 
+            
+
+        
+
+
+            
+        </script>
+
+    </body>
+</html>
